@@ -1,4 +1,15 @@
+import { execFileSync } from 'node:child_process';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { PDFDocument, PDFName, PDFNumber, StandardFonts, degrees, rgb, concatTransformationMatrix } from '../extension/vendor/pdf-lib.esm.min.js';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+/** Ink boxes and text of page 1 as MuPDF renders it (scripts/measure_ink.py); the JSON is its last line. */
+export function measure(file) {
+  const out = execFileSync('python', [join(root, 'scripts', 'measure_ink.py'), file], { encoding: 'utf8' });
+  return JSON.parse(out.trim().split('\n').pop());
+}
 
 // Page shapes that move PDF user space away from the screen: rotation, crop
 // boxes, a media box not at the origin, a content stream that leaves the CTM

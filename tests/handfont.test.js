@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,7 +10,7 @@ import { buildOtf } from '../extension/lib/handotf.js';
 import { stampPdf } from '../extension/lib/export.js';
 import { signatureCommands, commandsBounds } from '../extension/lib/ink.js';
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
-import { CASES, buildCase } from './fixtures.js';
+import { CASES, buildCase, measure } from './fixtures.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'smoke-out', 'hand');
@@ -100,7 +99,7 @@ test('handwritten text exports as ink where it was placed, on a rotated page', a
   const item = { id: 'h', kind: 'text', font: 'hand:test', text: 'Pat Example', size: 24, seed: 5, sig, page: 0, x: vp.width * 0.2, y: vp.height * 0.4, w: sig.w, h: sig.h, color: '#e00000' };
   const file = join(out, 'hand-rot90.pdf');
   writeFileSync(file, await stampPdf(bytes, [vp.transform], [item]));
-  const m = JSON.parse(execFileSync('python', [join(root, 'scripts', 'measure_ink.py'), file], { encoding: 'utf8' }));
+  const m = measure(file);
   const ink = commandsBounds(signatureCommands(sig));
   const want = [(item.x + ink.x0) / vp.width, (item.y + ink.y0) / vp.height, (item.x + ink.x1) / vp.width, (item.y + ink.y1) / vp.height];
   m.red.forEach((v, i) => assert.ok(Math.abs(v - want[i]) < 0.012, `edge ${i}: got ${v} want ${want[i]}`));
@@ -120,7 +119,7 @@ test('the downloadable font parses, has the letters, and works in a PDF', async 
   doc.addPage([400, 200]).drawText('Pat Example 10/16/2026', { x: 20, y: 100, size: 24, font, color: rgb(0, 0.63, 0) });
   const file = join(out, 'otf-in-pdf.pdf');
   writeFileSync(file, await doc.save());
-  const m = JSON.parse(execFileSync('python', [join(root, 'scripts', 'measure_ink.py'), file], { encoding: 'utf8' }));
+  const m = measure(file);
   assert.ok(m.green, 'no ink rendered from the generated font');
   assert.ok(m.text.includes('Pat'), JSON.stringify(m.text));
 });

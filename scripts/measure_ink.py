@@ -20,6 +20,9 @@ def box(mask, w, h):
 
 
 def main() -> None:
+    # MuPDF prints warnings to stdout, which would corrupt the JSON the tests read.
+    fitz.TOOLS.mupdf_display_warnings(False)
+    fitz.TOOLS.mupdf_display_errors(False)
     path = sys.argv[1]
     index = int(sys.argv[2]) if len(sys.argv) > 2 else 0
     dpi = int(sys.argv[3]) if len(sys.argv) > 3 else 144

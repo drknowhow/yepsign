@@ -1,6 +1,5 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,7 +10,7 @@ import { trimSignature, signatureCommands, commandsBounds } from '../extension/l
 import { TEXT_BASELINE } from '../extension/lib/geometry.js';
 import { FONTS } from '../extension/lib/fonts.js';
 import fontkit from '../extension/vendor/fontkit.mjs';
-import { CASES, buildCase } from './fixtures.js';
+import { CASES, buildCase, measure } from './fixtures.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'smoke-out', 'geometry');
@@ -32,9 +31,6 @@ async function viewports(bytes) {
   return vps;
 }
 
-function measure(file) {
-  return JSON.parse(execFileSync('python', [join(root, 'scripts', 'measure_ink.py'), file], { encoding: 'utf8' }));
-}
 
 function items(vp) {
   const w = vp.width * 0.3;
