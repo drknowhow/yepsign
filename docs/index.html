@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YepSign: sign PDFs in your own hand</title>
+  <meta name="description" content="A free Chrome extension for signing PDFs with a mouse, pen or finger. No printing, no scanning, and your files never leave your computer.">
+  <meta property="og:title" content="YepSign: sign PDFs in your own hand">
+  <meta property="og:description" content="Draw your signature once, click the line, save. Free, open source, and your files stay on your computer.">
+  <meta property="og:image" content="https://drknowhow.github.io/yepsign/img/og.png">
+  <link rel="icon" href="img/icon.png">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="./"><img src="img/icon.png" alt="">YepSign</a>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#private">Privacy</a>
+      <a href="https://github.com/drknowhow/yepsign">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <h1>Sign PDFs in your own hand.</h1>
+        <p class="lead">Draw your signature once with a mouse, pen or finger, click the line it goes on, and save. YepSign is a free Chrome extension, and your files never leave your computer.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/drknowhow/yepsign/releases/latest">Download for Chrome</a>
+          <a class="btn" href="https://github.com/drknowhow/yepsign">View the source</a>
+        </div>
+        <p class="note">The Chrome Web Store listing is coming soon. Until then, <a href="#install">install it from the download</a>.</p>
+      </div>
+      <div class="sheet" aria-hidden="true">
+        <div class="title">Rental Agreement</div>
+        <div class="bar" style="width: 94%"></div>
+        <div class="bar" style="width: 86%"></div>
+        <div class="bar" style="width: 90%"></div>
+        <div class="bar" style="width: 60%"></div>
+        <div class="sig"><div class="rule"></div><img src="img/signature.svg" alt=""></div>
+        <div class="label">Signature</div>
+      </div>
+    </div>
+
+    <div class="wrap"><div class="shot"><img src="img/1-sign-the-line.png" alt="YepSign with a signature, initials and a date placed on a rental agreement" width="1280" height="800"></div></div>
+
+    <section id="how">
+      <div class="wrap">
+        <div class="kicker">How it works</div>
+        <h2>Three steps instead of a printer and a scanner</h2>
+        <div class="steps">
+          <div class="step"><div class="n">1</div><h3>Draw it once</h3><p>Sign on the pad with whatever you have. A pen tablet's pressure, or your mouse speed, shapes the line like real ink.</p></div>
+          <div class="step"><div class="n">2</div><h3>Click the line</h3><p>Your signature lands on the line the way you drew it. Move it, resize it, add the date or your name.</p></div>
+          <div class="step"><div class="n">3</div><h3>Save the PDF</h3><p>You get an ordinary PDF with sharp vector ink, ready to email or upload anywhere.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap feature">
+        <div class="text">
+          <div class="kicker">Ink, not a stamp</div>
+          <h2>It looks like you signed it with a pen</h2>
+          <p>Choose a ballpoint, fountain pen or felt marker, blue or black ink, and a thickness. Lines thin out where your hand moves fast, the way a real pen does, and the ink stays crisp at any zoom.</p>
+          <p>You can also skip the pad and sign straight onto the page.</p>
+        </div>
+        <div class="shot"><img src="img/2-draw-signature.png" alt="The YepSign drawing pad with a signature in progress" width="1280" height="800" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap feature flip">
+        <div class="text">
+          <div class="kicker">Your handwriting</div>
+          <h2>Typed text, written in your hand</h2>
+          <p>Write each letter once, then two sentences. YepSign uses your letters, measures your spacing and how much your writing wanders, and writes dates and names the way you would, a little different every time.</p>
+          <p>Prefer a ready-made style? Six handwriting fonts and a plain print font are included. You can download your own handwriting as a font file too.</p>
+        </div>
+        <div class="shot"><img src="img/4-your-handwriting.png" alt="Teaching YepSign your handwriting, with a preview of text written in it" width="1280" height="800" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap feature">
+        <div class="text">
+          <div class="kicker">For real paperwork</div>
+          <h2>Several documents, one library</h2>
+          <ul>
+            <li>Open several PDFs at once, each in its own tab.</li>
+            <li>Keep signatures, initials and text you use often in your library.</li>
+            <li>Save unfinished work as a .yepsign file and keep editing later.</li>
+            <li>Rotated and cropped pages are handled, and so are protected PDFs that allow printing.</li>
+          </ul>
+        </div>
+        <div class="shot"><img src="img/5-tabs-and-library.png" alt="Three PDFs open as tabs, with the library of signatures and text styles" width="1280" height="800" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="private" id="private">
+      <div class="wrap">
+        <div class="kicker" style="color: var(--gold)">Private by design</div>
+        <h2>Your documents stay on your computer</h2>
+        <div class="grid">
+          <div><h3>No account</h3><p>Install it and sign. There is nothing to register for and nothing to log in to.</p></div>
+          <div><h3>No server</h3><p>PDFs are opened and saved inside the extension. YepSign only goes online to fetch a PDF you asked it to open from a website.</p></div>
+          <div><h3>No tracking</h3><p>No analytics and no ads. Your signatures and handwriting are kept in Chrome on this computer. <a href="privacy.html">Privacy policy</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install" class="install">
+      <div class="wrap">
+        <div class="kicker">Install</div>
+        <h2>Get YepSign</h2>
+        <ol>
+          <li>Download <a href="https://github.com/drknowhow/yepsign/releases/latest">the latest release</a> and unzip it.</li>
+          <li>Open <code>chrome://extensions</code>, turn on <strong>Developer mode</strong> and click <strong>Load unpacked</strong>.</li>
+          <li>Choose the unzipped folder, then pin YepSign from the extensions menu.</li>
+        </ol>
+        <p class="note">To sign PDFs you open from your disk, turn on <strong>Allow access to file URLs</strong> in YepSign's details. Once the Chrome Web Store listing is live, installing will be one click.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap legal">
+        <h2>Does a drawn signature count?</h2>
+        <p>In the United States, the ESIGN Act and the state laws based on UETA generally give an electronic signature the same effect as one in ink, and many other countries have similar rules. Both sides have to agree to sign electronically, and there are exceptions such as wills, some family-law and court documents, and certain notices. YepSign puts your handwriting on the document; it does not verify who signed or add a cryptographic digital signature. For a document that matters, check what the other side accepts. This is general information, not legal advice.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>YepSign is free and open source under the MIT license. Made by Dr. Know How.</span>
+      <span><a href="https://github.com/drknowhow/yepsign">GitHub</a> · <a href="privacy.html">Privacy</a> · <a href="https://github.com/drknowhow/yepsign/issues">Support</a></span>
+    </div>
+  </footer>
+</body>
+</html>

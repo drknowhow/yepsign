@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} · YepSign</title>
+  <link rel="icon" href="{{ '/img/icon.png' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/site.css' | relative_url }}">
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="{{ '/' | relative_url }}"><img src="{{ '/img/icon.png' | relative_url }}" alt="">YepSign</a>
+    <nav class="links">
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="https://github.com/drknowhow/yepsign">GitHub</a>
+    </nav>
+  </header>
+  <main class="wrap"><article class="doc">{{ content }}</article></main>
+  <footer>
+    <div class="wrap">
+      <span>YepSign is free and open source under the MIT license.</span>
+      <span><a href="https://github.com/drknowhow/yepsign">GitHub</a> · <a href="https://github.com/drknowhow/yepsign/issues">Support</a></span>
+    </div>
+  </footer>
+</body>
+</html>

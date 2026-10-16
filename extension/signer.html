@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YepSign</title>
+  <link rel="icon" href="icons/icon32.png">
+  <link rel="stylesheet" href="signer.css">
+</head>
+<body>
+  <header class="bar">
+    <div class="brand"><img src="icons/icon32.png" alt="" width="22" height="22"><span>YepSign</span></div>
+    <div class="doc-name" id="docName" title=""></div>
+    <div class="bar-tools">
+      <button id="openBtn" class="btn" type="button" title="Open a PDF or a .yepsign file (Ctrl+O)">Open</button>
+      <input type="file" id="fileInput" accept="application/pdf,.pdf,.yepsign" multiple hidden>
+      <div class="zoom" role="group" aria-label="Zoom">
+        <button id="zoomOut" class="btn icon" type="button" aria-label="Zoom out" disabled>&minus;</button>
+        <button id="zoomFit" class="btn ghost zoom-label" type="button" title="Fit to width" disabled>100%</button>
+        <button id="zoomIn" class="btn icon" type="button" aria-label="Zoom in" disabled>+</button>
+      </div>
+      <button id="undoBtn" class="btn ghost" type="button" disabled title="Undo (Ctrl+Z)">Undo</button>
+      <button id="saveWorkBtn" class="btn" type="button" disabled title="Save an editable copy (.yepsign) to finish or change later">Save work</button>
+      <button id="saveBtn" class="btn primary" type="button" disabled title="Save (Ctrl+S)">Save signed PDF</button>
+    </div>
+  </header>
+  <nav id="tabBar" class="tab-bar" role="tablist" aria-label="Open documents" hidden></nav>
+
+  <div class="layout">
+    <aside class="side">
+      <section>
+        <div class="sec-head">
+          <h2>Library</h2>
+          <span class="sec-actions">
+            <button id="libExport" class="link" type="button" title="Save your signatures, text and handwriting to a .yepsign file">Export</button>
+            <button id="libImport" class="link" type="button" title="Add signatures, text and handwriting from a .yepsign file">Import</button>
+          </span>
+        </div>
+        <div id="sigList" class="sig-list"></div>
+        <button id="newSigBtn" class="btn block" type="button">New signature</button>
+        <button id="newInitBtn" class="btn block ghost" type="button">New initials</button>
+        <h3 class="sub">Saved text</h3>
+        <div id="snippetList" class="snippet-list"></div>
+      </section>
+      <section>
+        <h2>Add to the page</h2>
+        <div class="tool-row">
+          <button id="textTool" class="btn" type="button">Text</button>
+          <button id="dateTool" class="btn" type="button">Today's date</button>
+        </div>
+        <button id="drawTool" class="btn block" type="button">Draw on the page</button>
+      </section>
+      <section>
+        <h2>Text style</h2>
+        <div id="fontList" class="font-list" role="group" aria-label="Text style"></div>
+        <button id="teachHand" class="btn block ghost" type="button">Teach YepSign my handwriting</button>
+      </section>
+      <p class="hint" id="hint" aria-live="polite">Open a PDF, then pick a signature and click where it goes.</p>
+      <p class="privacy">Your PDFs, signatures and handwriting stay on this computer. Nothing is uploaded.</p>
+    </aside>
+
+    <main id="viewer" class="viewer">
+      <div id="banner" class="banner" hidden></div>
+      <div id="empty" class="empty">
+        <div class="drop">
+          <svg viewBox="0 0 120 48" aria-hidden="true"><path d="M6 34c10-18 18-26 22-20s-8 22-2 22 14-26 20-24-6 20 0 20 10-12 16-12 4 10 10 10 12-8 18-10 12 2 18 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h1>Sign a PDF without printing it</h1>
+          <p>Drop PDFs here, or</p>
+          <button id="emptyOpen" class="btn primary" type="button">Choose PDFs</button>
+          <p class="small">Tip: on a PDF open in Chrome, click the YepSign button in the toolbar (Alt+Shift+S). A .yepsign file reopens saved work.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="padDialog" class="pad-dialog" aria-labelledby="padTitle">
+    <form method="dialog" id="padForm">
+      <div class="pad-head">
+        <h2 id="padTitle">Draw your signature</h2>
+        <span id="penInfo" class="pen-info"></span>
+      </div>
+      <div class="pad-wrap">
+        <canvas id="padCanvas" aria-label="Signature drawing area"></canvas>
+        <div class="baseline" aria-hidden="true"><span>&times;</span></div>
+        <div id="padPlaceholder" class="pad-placeholder" aria-hidden="true">Sign here with your mouse, pen or finger</div>
+      </div>
+      <div class="pad-controls">
+        <div class="swatches" id="swatches" role="radiogroup" aria-label="Ink colour"></div>
+        <label class="custom-color" title="Other colour"><input type="color" id="customColor" value="#1f3a93"><span>Other</span></label>
+        <label class="field">Pen
+          <select id="penSelect"></select>
+        </label>
+        <label class="field">Thickness
+          <input type="range" id="thickness" min="0.6" max="1.8" step="0.05" value="1">
+        </label>
+      </div>
+      <div class="pad-foot">
+        <button type="button" id="padUndo" class="btn ghost">Undo stroke</button>
+        <button type="button" id="padClear" class="btn ghost">Clear</button>
+        <label class="remember"><input type="checkbox" id="padRemember" checked> Remember on this device</label>
+        <span class="spacer"></span>
+        <button type="button" id="padCancel" class="btn ghost">Cancel</button>
+        <button type="submit" id="padSave" class="btn primary" value="save" disabled>Use this signature</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="handDialog" class="hand-dialog" aria-labelledby="handTitle">
+    <div class="hand-inner">
+      <div class="hand-head">
+        <h2 id="handTitle">Teach YepSign your handwriting</h2>
+        <ol class="hand-steps" id="handSteps"></ol>
+      </div>
+      <p class="hand-intro" id="handIntro"></p>
+      <div class="hand-body" id="handBody"></div>
+      <div class="hand-foot">
+        <span class="hand-status" id="handStatus"></span>
+        <span class="spacer"></span>
+        <button type="button" id="handCancel" class="btn ghost">Cancel</button>
+        <button type="button" id="handBack" class="btn">Back</button>
+        <button type="button" id="handNext" class="btn primary">Next</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="drawBar" class="draw-bar" role="toolbar" aria-label="Drawing on the page" hidden>
+    <span class="draw-title">Drawing on the page</span>
+    <div class="swatches" id="drawSwatches" role="radiogroup" aria-label="Ink colour"></div>
+    <select id="drawPen" aria-label="Pen"></select>
+    <button type="button" id="drawUndo" class="btn ghost">Undo stroke</button>
+    <label class="remember"><input type="checkbox" id="drawKeep"> Also save to my signatures</label>
+    <button type="button" id="drawCancel" class="btn ghost">Cancel</button>
+    <button type="button" id="drawDone" class="btn primary">Done</button>
+  </div>
+
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script type="module" src="signer.js"></script>
+</body>
+</html>

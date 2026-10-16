@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.zip
+smoke-out/
+extension/vendor/
+.env
+
+# Local coding-agent setup (C3, Claude Code, Copilot); not part of the project.
+.c3/
+.claude/
+.mcp.json
+CLAUDE.md
+AGENTS.md
+.github/copilot-instructions.md
