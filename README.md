@@ -4,7 +4,7 @@
 
 YepSign is a Chrome extension for signing PDFs without printing them. You draw your signature once with a mouse, a pen tablet or a finger, click the line it belongs on, and save a signed copy. The PDF never leaves your computer.
 
-[Download the latest release](https://github.com/drknowhow/yepsign/releases/latest) · [Website](https://drknowhow.github.io/yepsign/) · [Privacy policy](docs/privacy.md) · Chrome Web Store listing coming soon
+[Add to Chrome from the Chrome Web Store](https://chromewebstore.google.com/detail/yepsign-sign-pdfs-by-hand/jiooelcmkfbpfakhkpedincdmmeobdpp) · [Website](https://drknowhow.github.io/yepsign/) · [Privacy policy](docs/privacy.md) · [Releases](https://github.com/drknowhow/yepsign/releases/latest)
 
 ![A signature, initials and a date placed on a rental agreement](docs/img/1-sign-the-line.png)
 
@@ -32,13 +32,15 @@ In the United States, the ESIGN Act and the state laws based on UETA generally g
 
 ## Install
 
-The Chrome Web Store listing is coming soon. Until then, install it from a release:
+Install YepSign from the [Chrome Web Store](https://chromewebstore.google.com/detail/yepsign-sign-pdfs-by-hand/jiooelcmkfbpfakhkpedincdmmeobdpp) and pin it from the extensions menu. Chrome keeps it up to date.
+
+To sign PDFs you open from your disk in Chrome, open YepSign's **Details** on `chrome://extensions` and turn on **Allow access to file URLs**.
+
+To install a particular version by hand instead:
 
 1. Download `yepsign-<version>.zip` from [Releases](https://github.com/drknowhow/yepsign/releases/latest) and unzip it.
 2. Open `chrome://extensions`, turn on **Developer mode** and click **Load unpacked**.
 3. Choose the unzipped folder.
-
-To sign PDFs you open from your disk in Chrome, open YepSign's **Details** on `chrome://extensions` and turn on **Allow access to file URLs**.
 
 ## How to use it
 

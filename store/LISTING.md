@@ -1,5 +1,7 @@
 # Chrome Web Store listing
 
+Live at <https://chromewebstore.google.com/detail/yepsign-sign-pdfs-by-hand/jiooelcmkfbpfakhkpedincdmmeobdpp> (item ID `jiooelcmkfbpfakhkpedincdmmeobdpp`).
+
 Text and answers to paste into the Chrome Web Store developer dashboard, and the steps to publish. Images are in this folder and in `docs/img/`.
 
 ## Store listing tab
